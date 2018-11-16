@@ -1,0 +1,34 @@
+{
+  "name": "react-native-autocomplete-search",
+  "version": "1.0.0",
+  "description": "react-native component used for autocompletion when searching data from local or remote source",
+  "main": "index.js",
+  "repository": "https://github.com/najeal/react-native-autocomplete-search.git",
+  "author": "nathanh",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-component",
+    "search",
+    "local",
+    "remote",
+    "source",
+    "autocomplete",
+    "autocompletion",
+    "autosuggestion",
+    "autosuggest",
+    "suggestion",
+    "suggest"
+  ],
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-native": "^0.57.5"
+  }
+}
