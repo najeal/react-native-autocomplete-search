@@ -1,7 +1,7 @@
-### Intro
+### Intro / Preview
 
 Component to search suggestion during you write a word. Based on a static data list or remote data. You can search suggestion in static data or fetching data suggestion from an api doing the work when you send the word you write.
-
+<img src="https://raw.githubusercontent.com/najeal/react-native-autocomplete-search/master/examples/result_images/react-native-autocomplete-search-complex.png" width="300" height="250"/>
 
 ### Installation
 
