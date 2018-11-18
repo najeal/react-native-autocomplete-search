@@ -1,3 +1,8 @@
+### Intro
+
+Component to search suggestion during you write a word. Based on a static data list or remote data. You can search suggestion in static data or fetching data suggestion from an api doing the work when you send the word you write.
+
+
 ### Installation
 
 
@@ -15,7 +20,7 @@ yarn add react-native-autocomplete-search
 ```
 
 
-### Installation
+### Usage
 **Include the library in your code**
 ```
 import { InputAutoSuggest } from 'react-native-autocomplete-search';
@@ -55,3 +60,15 @@ import { InputAutoSuggest } from 'react-native-autocomplete-search';
 itemFormat is used to give the path to the id, name and tags giving:
 
 <img src="https://raw.githubusercontent.com/najeal/react-native-autocomplete-search/master/examples/result_images/react-native-autocomplete-search-complex.png" width="300" height="250"/>
+
+
+**Simple usage with remote data fetching
+
+You can use the component to send the text you write and ask an api to make the suggestions. Just give your method calling the api to apiEndpointSuggestData prop instead of staticData.
+```
+<InputAutoSuggest
+  style={{ flex: 1 }}
+  apiEndpointSuggestData={text => YOUR-METHOD-CALLING-API(text)}
+  itemFormat={{id: 'details.id', name: 'details.name', tags:['details.continent', 'details.country']}}
+/>
+```
