@@ -1,16 +1,39 @@
+/* @flow */
+
 import _ from 'lodash';
 
-function suggestFormat(datas, itemFormat, text) {
+export type FormatDescribe = {
+  id: string,
+  name: string,
+  tags?: ?Array<string>
+};
+
+export type SuggestionDescribe = {
+  id: string,
+  name: string,
+  tags: ?Array<{item: string, id: string}>
+}
+
+export type SuggestData = {
+  suggest: Array<SuggestionDescribe>,
+  existingItem: ?{id:string, name:string}
+}
+
+function suggestFormat(
+  datas: Array<{}>,
+  itemFormat: FormatDescribe,
+  text: string):SuggestData {
   let searching = true;
   let existingItem = null;
-  const suggest = datas.map(
-    (data) => {
+  let tags: ?Array<{item: string, id: string}> = null;
+  const suggest: Array<SuggestionDescribe> = datas.map(
+    (data:{}) => {
       const id = _.get(data, itemFormat.id);
       const name = _.get(data, itemFormat.name);
-      const tags = itemFormat.tags.map((tag, index) => ({
+      tags = (itemFormat.tags != null) ? itemFormat.tags.map((tag, index) => ({
         item: _.get(data, tag),
-        id: index,
-      }));
+        id: String(index),
+      })) : null;
       // search text presence
       if (searching && (name === text)) {
         existingItem = { id, name };
@@ -22,17 +45,23 @@ function suggestFormat(datas, itemFormat, text) {
   return { suggest, existingItem };
 }
 
-async function searchForSuggest(text, apiEndpointSuggestData, keyPathRequestResult, itemFormat) {
+async function searchForSuggest(text:string,
+  apiEndpointSuggestData:(text: string)=>any,
+  keyPathRequestResult:string,
+  itemFormat:FormatDescribe) {
   const response = await apiEndpointSuggestData(text);
   const responseData = await response.json();
   return suggestFormat(_.get(responseData, keyPathRequestResult), itemFormat, text);
 }
 
-function searchForRelevant(text, items, itemFormat) {
-  const suggest = [];
+function searchForRelevant(
+  text:string, items:Array<{}>,
+  itemFormat:FormatDescribe):SuggestData {
+  const suggest:Array<SuggestionDescribe> = [];
   let counter = 0;
   let existingItem = null;
-  const reg = new RegExp(`^${text}`, 'i', 'u');
+  const reg = new RegExp(`^${text}`, 'iu');
+  let tags: ?Array<{item: string, id: string}> = null;
   items.some((element) => {
     const name = _.get(element, itemFormat.name);
     if (reg.test(name)) {
@@ -40,10 +69,13 @@ function searchForRelevant(text, items, itemFormat) {
       if (!existingItem && text === name) {
         existingItem = { id, name };
       }
-      const tags = itemFormat.tags.map((tag, index) => ({
+      tags = (itemFormat.tags != null)
+      ? itemFormat.tags.map(
+          (tag, index) => ({
         item: _.get(element, tag),
-        id: index,
-      }));
+        id: String(index),
+      }))
+      : null;
       suggest.push({ id, name, tags });
       counter += 1;
       if (counter >= 5) {

@@ -1,3 +1,4 @@
+
 import {
   FlatList, View, TextInput, StyleSheet,
 } from 'react-native';
@@ -8,8 +9,8 @@ import * as _ from 'lodash';
 import SuggestionListItem from './SuggestionListItem';
 import suggest from './services/suggest';
 
-let style;
 
+let style;
 
 class InputAutoSuggest extends Component {
   constructor(props) {
@@ -34,7 +35,11 @@ class InputAutoSuggest extends Component {
 
   async searchList(text) {
     const {
-      keyPathRequestResult, itemFormat, apiEndpointSuggestData, onDataSelectedChange, staticData,
+      keyPathRequestResult,
+      itemFormat,
+      apiEndpointSuggestData,
+      onDataSelectedChange,
+      staticData,
     } = this.props;
     this.setState({ value: text });
     let suggestData = null;
@@ -47,7 +52,10 @@ class InputAutoSuggest extends Component {
     } else {
       try {
         suggestData = await suggest.searchForSuggest(
-          text, apiEndpointSuggestData, keyPathRequestResult, itemFormat,
+          text,
+          apiEndpointSuggestData,
+          keyPathRequestResult,
+          itemFormat,
         );
       } catch (e) {
         suggestData = { suggest: [], existingItem: null };
@@ -71,7 +79,7 @@ class InputAutoSuggest extends Component {
         tags={item.tags}
       />
     );
-  }
+  };
 
   render() {
     const { value, data } = this.state;
@@ -101,10 +109,7 @@ InputAutoSuggest.propTypes = {
   itemTextStyle: PropTypes.shape({}),
   itemTagStyle: PropTypes.shape({}),
   apiEndpointSuggestData: PropTypes.func,
-  staticData: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })),
+  staticData: PropTypes.arrayOf(PropTypes.shape({})),
   onDataSelectedChange: PropTypes.func,
   keyPathRequestResult: PropTypes.string,
   itemFormat: PropTypes.shape({
@@ -131,7 +136,8 @@ InputAutoSuggest.defaultProps = {
 
 style = StyleSheet.create({
   container: {
-    flexDirection: 'column', justifyContent: 'flex-start',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
   input: {
     fontSize: 22,
