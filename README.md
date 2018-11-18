@@ -62,7 +62,7 @@ itemFormat is used to give the path to the id, name and tags giving:
 <img src="https://raw.githubusercontent.com/najeal/react-native-autocomplete-search/master/examples/result_images/react-native-autocomplete-search-complex.png" width="300" height="250"/>
 
 
-**Simple usage with remote data fetching
+**Simple usage with remote data fetching**
 
 You can use the component to send the text you write and ask an api to make the suggestions. Just give your method calling the api to apiEndpointSuggestData prop instead of staticData.
 ```
