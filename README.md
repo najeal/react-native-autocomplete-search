@@ -20,6 +20,26 @@ or
 yarn add react-native-autocomplete-search
 ```
 
+### Props details of InputAutosuggest
+
+**inputStyle:** style object to change the style of the InputText used *// Optional*
+
+**flatListStyle:** style object to change the style of the FlatList used *// Optional*
+
+**itemTextStyle:** style object to change the style of the text suggestion, *// Optional*
+
+**itemTagStyle:** style object to change the style of the tag suggestion, *// Optional*
+
+**apiEndpointSuggestData:** function to access suggest feature to remote data (elatic index for example), *// omit if using staticData*
+
+**staticData:** Array containing static data used to search suggestion instead of using apiEndpointSuggestData *// omit if using apiEndpointSuggestData*
+
+**onDataSelectedChange:** function to handle selected data in parent component
+
+**keyPathRequestResult:** path as string. It is used in the case of fetching data like elastic for example, array suggestion can be in a specific path of the object. *// can be omit if your data object is an array*
+
+**itemFormat:** object to containing path string for 'id' and 'name' in the data array. 'tags' is an array of string and is optional. *// Optional if you data array contains id and name property in each object*
+
 
 ### Usage
 **Include the library in your code**
