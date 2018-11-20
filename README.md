@@ -1,6 +1,6 @@
 ### Intro / Preview
 
-Component to search suggestion during you write a word. Based on a static data list or remote data. You can search suggestion in static data or fetching data suggestion from an api doing the work when you send the word you write.
+Component to search suggestion during you write a word. Based on a static data list or remote data. You can search suggestion in static data or fetching data suggestion from an api doing the work when you send the word you write. If suggestion is selected, an object ({ id: XX, name: XX }) is sent back to the parent component. The same occurs by simply write data corresponding to one suggestion. The component is usable with static data or data stored remotly like an elastic index using suggest feature (ex: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters-completion.html).
 
 <img src="https://raw.githubusercontent.com/najeal/react-native-autocomplete-search/master/examples/result_images/react-native-autocomplete-search-complex.png" width="300" height="250"/>
 
