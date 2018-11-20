@@ -73,3 +73,17 @@ You can use the component to send the text you write and ask an api to make the 
   itemFormat={{id: 'details.id', name: 'details.name', tags:['details.continent', 'details.country']}}
 />
 ```
+
+**Get back the data selected to the parent component**
+
+You can get back data information about the research by using the prop function 'onDataSelectedChange':
+on object is passed as { id: XX, name: XX } or as null if there is not corresponding research information about the test.
+
+```
+<InputAutoSuggest
+  style={{ flex: 1 }}
+  apiEndpointSuggestData={text => YOUR-METHOD-CALLING-API(text)}
+  itemFormat={{id: 'details.id', name: 'details.name', tags:['details.continent', 'details.country']}}
+  onDataSelectedChange={data => console.log(data)}
+/>
+```
