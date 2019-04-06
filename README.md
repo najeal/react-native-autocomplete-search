@@ -40,6 +40,7 @@ yarn add react-native-autocomplete-search
 
 **itemFormat:** object to containing path string for 'id' and 'name' in the data array. 'tags' is an array of string and is optional. *// Optional if you data array contains id and name property in each object*
 
+**testID:** identifier for the text input field to be used within your UI tests.
 
 ### Usage
 **Include the library in your code**
