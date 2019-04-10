@@ -15,9 +15,10 @@ let style;
 class InputAutoSuggest extends Component {
   constructor(props) {
     super(props);
-    const { staticData } = this.props;
+    const { staticData, itemFormat } = this.props;
     
-    this.state = { data: staticData || [], value: '' };
+    const data = suggest.searchForRelevant('', staticData || [], itemFormat);
+    this.state = { data: data.suggest, value: '' };
 
     this.searchList = this.searchList.bind(this);
     this.renderItem = this.renderItem.bind(this);
