@@ -42,6 +42,8 @@ yarn add react-native-autocomplete-search
 
 **testID:** identifier for the text input field to be used within your UI tests.
 
+**placeholder:** text to use for placeholder while the input field its empty
+
 ### Usage
 **Include the library in your code**
 ```

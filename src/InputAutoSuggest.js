@@ -83,7 +83,7 @@ class InputAutoSuggest extends Component {
 
   render() {
     const { value, data } = this.state;
-    const { inputStyle, flatListStyle, testID } = this.props;
+    const { inputStyle, flatListStyle, placeholder, testID } = this.props;
     return (
       <View style={style.container}>
         <TextInput
@@ -91,6 +91,7 @@ class InputAutoSuggest extends Component {
           value={value}
           clearButtonMode="while-editing"
           onChangeText={this.searchList}
+          placeholder={placeholder}
           testID={testID}
         />
         <FlatList
@@ -119,6 +120,7 @@ InputAutoSuggest.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
   }),
   testID: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 InputAutoSuggest.defaultProps = {
   inputStyle: {},
@@ -127,6 +129,7 @@ InputAutoSuggest.defaultProps = {
   itemTagStyle: { fontSize: 22 },
   staticData: null,
   testID: null,
+  placeholder: null,
   apiEndpointSuggestData: () => _.noop,
   onDataSelectedChange: () => _.noop,
   keyPathRequestResult: 'suggest.city[0].options',
