@@ -93,6 +93,7 @@ class InputAutoSuggest extends Component {
           onChangeText={this.searchList}
           placeholder={placeholder}
           testID={testID}
+          autoCorrect={false}
         />
         <FlatList
           style={[style.flatList, flatListStyle]}
