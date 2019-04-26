@@ -60,7 +60,7 @@ function searchForRelevant(
   const suggest:Array<SuggestionDescribe> = [];
   let counter = 0;
   let existingItem = null;
-  const reg = new RegExp(`^${text}`, 'iu');
+  const reg = new RegExp(`${text}`, 'iu');
   let tags: ?Array<{item: string, id: string}> = null;
   items.some((element) => {
     const name = _.get(element, itemFormat.name);

@@ -33,6 +33,25 @@ describe('suggest searchForRelevant tests', () => {
     );
   });
 
+  it('search with contains', () => {
+    const input:Array<{}> = [{
+      val: 'val1',
+      details: {id: '1', name: 'val'}
+    },{
+      val: 'val2',
+      details: {id: '2', name: 'val2'}
+    }];
+    const inputFormat:FormatDescribe = {
+      id:'details.id',
+      name:'details.name'
+    };
+    const res = suggest.searchForRelevant('2', input, inputFormat);
+    expect(res.suggest).toEqual(
+      [{id: '2', name:'val2', tags: null}]
+    );
+  });
+
+
   it('test path multiple data and tags', () => {
     const input:Array<{}> = [{
       val: 'val1',
