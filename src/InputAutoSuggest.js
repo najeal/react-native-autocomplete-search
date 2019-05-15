@@ -19,6 +19,7 @@ class InputAutoSuggest extends Component {
 
     this.searchList = this.searchList.bind(this);
     this.renderItem = this.renderItem.bind(this);
+    this.debounceSearch = _.debounce(this.searchList, 500);
   }
 
   onPressItem = (id: string, name: string) => {
@@ -33,6 +34,11 @@ class InputAutoSuggest extends Component {
 
   keyExtractor = item => item.id;
 
+  updateText = (text: string) => {
+    this.setState({ value: text });
+    this.debounceSearch(text);
+  };
+
   async searchList(text) {
     const {
       keyPathRequestResult,
@@ -41,7 +47,6 @@ class InputAutoSuggest extends Component {
       onDataSelectedChange,
       staticData,
     } = this.props;
-    this.setState({ value: text });
     let suggestData = null;
     if (staticData != null) {
       try {
@@ -90,7 +95,7 @@ class InputAutoSuggest extends Component {
           style={[style.input, inputStyle]}
           value={value}
           clearButtonMode="while-editing"
-          onChangeText={this.searchList}
+          onChangeText={this.updateText}
           placeholder={placeholder}
           testID={testID}
           autoCorrect={false}
