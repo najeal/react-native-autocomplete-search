@@ -84,6 +84,9 @@ function searchForRelevant(
     }
     return false;
   });
+  if (!existingItem && suggest.length === 1) {
+    existingItem = suggest[0];
+  }
   return { suggest, existingItem };
 }
 
