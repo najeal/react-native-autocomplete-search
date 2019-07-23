@@ -44,6 +44,8 @@ yarn add react-native-autocomplete-search
 
 **placeholder:** text to use for placeholder while the input field its empty
 
+**placeholderTextColor:** the text color of the placeholder string.
+
 ### Usage
 **Include the library in your code**
 ```
