@@ -1,6 +1,6 @@
 {
   "name": "react-native-autocomplete-search",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "react-native component used for autocompletion when searching data from local or remote source",
   "main": "index.js",
   "repository": "https://github.com/B9Ingenieria/react-native-autocomplete-search.git",

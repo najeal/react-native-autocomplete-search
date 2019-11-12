@@ -154,6 +154,7 @@ style = StyleSheet.create({
   input: {
     fontSize: 22,
     borderBottomWidth: 1,
+    color: '#000000',
   },
   flatList: {},
   itemTextStyle: { fontSize: 30 },
