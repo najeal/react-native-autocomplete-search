@@ -32,6 +32,9 @@ class InputAutoSuggest extends Component {
       value: name,
     });
     onDataSelectedChange(existingItem);
+    this.setState({
+      data: []
+    });
   };
 
   keyExtractor = item => item.id;
