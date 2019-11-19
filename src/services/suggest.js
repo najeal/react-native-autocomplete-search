@@ -46,12 +46,18 @@ function suggestFormat(
 }
 
 async function searchForSuggest(text:string,
-  apiEndpointSuggestData:(text: string)=>any,
+apiEndpointSuggestData:(text: string)=>any,
   keyPathRequestResult:string,
   itemFormat:FormatDescribe) {
   const response = await apiEndpointSuggestData(text);
-  const responseData = await response.json();
-  return suggestFormat(_.get(responseData, keyPathRequestResult), itemFormat, text);
+  let responseData;
+  try {
+    responseData = await response.json();
+  }
+  catch (e) {
+    responseData = response.data;
+  }
+  return suggestFormat(_.get(responseData, keyPathRequestResult) || responseData, itemFormat, text);
 }
 
 function searchForRelevant(
