@@ -24,10 +24,10 @@ class InputAutoSuggest extends Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  onPressItem = (id: string, name: string) => {
+  onPressItem = (id: string, name: string, tags) => {
     // updater functions are preferred for transactional updates
     const { onDataSelectedChange } = this.props;
-    const existingItem = { id, name };
+    const existingItem = { id, name, tags};
     this.setState({
       value: name,
     });
