@@ -7,7 +7,7 @@ import React, { PureComponent } from 'react';
 class SuggestionListItem extends PureComponent {
   onPress = () => {
     const { name, id, onPressItem } = this.props;
-    onPressItem(id, name);
+    onPressItem(id, name, this.props.tags);
   };
 
   render() {

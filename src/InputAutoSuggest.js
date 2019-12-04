@@ -16,7 +16,7 @@ class InputAutoSuggest extends Component {
   constructor(props) {
     super(props);
     const { staticData, itemFormat } = this.props;
-    
+
     const data = suggest.searchForRelevant('', staticData || [], itemFormat);
     this.state = { data: data.suggest, value: '' };
 
@@ -24,14 +24,17 @@ class InputAutoSuggest extends Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  onPressItem = (id: string, name: string) => {
+  onPressItem = (id: string, name: string, tags) => {
     // updater functions are preferred for transactional updates
     const { onDataSelectedChange } = this.props;
-    const existingItem = { id, name };
+    const existingItem = { id, name, tags};
     this.setState({
       value: name,
     });
     onDataSelectedChange(existingItem);
+    this.setState({
+      data: [],
+    });
   };
 
   keyExtractor = item => item.id;
@@ -86,10 +89,11 @@ class InputAutoSuggest extends Component {
 
   render() {
     const { value, data } = this.state;
-    const { inputStyle, flatListStyle } = this.props;
+    const { inputStyle, flatListStyle, inputPlaceHolder } = this.props;
     return (
       <View style={style.container}>
         <TextInput
+          placeholder={inputPlaceHolder}
           style={[style.input, inputStyle]}
           value={value}
           clearButtonMode="while-editing"
@@ -108,6 +112,7 @@ class InputAutoSuggest extends Component {
 }
 InputAutoSuggest.propTypes = {
   inputStyle: PropTypes.shape({}),
+  inputPlaceHolder: PropTypes.string,
   flatListStyle: PropTypes.shape({}),
   itemTextStyle: PropTypes.shape({}),
   itemTagStyle: PropTypes.shape({}),
@@ -123,6 +128,7 @@ InputAutoSuggest.propTypes = {
 };
 InputAutoSuggest.defaultProps = {
   inputStyle: {},
+  inputPlaceHolder: '',
   flatListStyle: {},
   itemTextStyle: { fontSize: 25 },
   itemTagStyle: { fontSize: 22 },
