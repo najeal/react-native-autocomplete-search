@@ -55,17 +55,16 @@ async function searchForSuggest(text:string,
 }
 
 function searchForRelevant(
-  text:string,
-  items:Array<{}>,
+  text:string, items:Array<{}>,
   itemFormat:FormatDescribe):SuggestData {
   const suggest:Array<SuggestionDescribe> = [];
   let counter = 0;
   let existingItem = null;
-  const reg = text ?  new RegExp(`^${text}`, 'iu') : null;
+  const reg = new RegExp(`^${text}`, 'iu');
   let tags: ?Array<{item: string, id: string}> = null;
   items.some((element) => {
     const name = _.get(element, itemFormat.name);
-    if (!reg || reg.test(name)) {
+    if (reg.test(name)) {
       const id = _.get(element, itemFormat.id);
       if (!existingItem && text === name) {
         existingItem = { id, name };
@@ -79,6 +78,9 @@ function searchForRelevant(
       : null;
       suggest.push({ id, name, tags });
       counter += 1;
+      if (counter >= 5) {
+        return true;
+      }
     }
     return false;
   });

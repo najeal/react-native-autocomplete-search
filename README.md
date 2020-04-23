@@ -10,7 +10,7 @@ Component to search suggestion during you write a word. Based on a static data l
 
 **Install package via npm:**
 ```
-  npm install react-native-autocomplete-search
+  npm install react-native-react-native-autocomplete-search
 ```
 
 or

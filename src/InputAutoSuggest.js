@@ -1,6 +1,6 @@
 
 import {
-  FlatList, View, TextInput, StyleSheet,
+  FlatList, View, TextInput, StyleSheet, Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 // import { TextInput } from 'react-native-ui-lib';
 import SuggestionListItem from './SuggestionListItem';
 import suggest from './services/suggest';
+import { normalizeFontSize } from './NormalizeFont'
 
 
 let style;
@@ -15,10 +16,7 @@ let style;
 class InputAutoSuggest extends Component {
   constructor(props) {
     super(props);
-    const { staticData, itemFormat } = this.props;
-    
-    const data = suggest.searchForRelevant('', staticData || [], itemFormat);
-    this.state = { data: data.suggest, value: '' };
+    this.state = { data: [], value: '', listEnable: true };
 
     this.searchList = this.searchList.bind(this);
     this.renderItem = this.renderItem.bind(this);
@@ -27,9 +25,11 @@ class InputAutoSuggest extends Component {
   onPressItem = (id: string, name: string) => {
     // updater functions are preferred for transactional updates
     const { onDataSelectedChange } = this.props;
+    const estado = this.state.listEnable;
     const existingItem = { id, name };
     this.setState({
       value: name,
+      listEnable: !estado,
     });
     onDataSelectedChange(existingItem);
   };
@@ -48,7 +48,7 @@ class InputAutoSuggest extends Component {
     let suggestData = null;
     if (staticData != null) {
       try {
-        suggestData = !text ? staticData : suggest.searchForRelevant(text, staticData, itemFormat);
+        suggestData = suggest.searchForRelevant(text, staticData, itemFormat);
       } catch (e) {
         suggestData = { suggest: [], existingItem: null };
       }
@@ -73,7 +73,9 @@ class InputAutoSuggest extends Component {
   renderItem = ({ item }) => {
     const { itemTextStyle, itemTagStyle } = this.props;
     return (
-      <SuggestionListItem
+      <>
+      {this.state.listEnable && (
+        <SuggestionListItem
         textStyle={itemTextStyle}
         tagStyle={itemTagStyle}
         id={item.id}
@@ -81,22 +83,30 @@ class InputAutoSuggest extends Component {
         name={item.name}
         tags={item.tags}
       />
+)}
+      </>
     );
   };
 
   render() {
     const { value, data } = this.state;
-    const { inputStyle, flatListStyle } = this.props;
+    const { inputStyle, flatListStyle, antText, placeholder } = this.props;
     return (
       <View style={style.container}>
+        <View style={{flexDirection: 'row'}}>
+        <Text style={style.text}>{antText}</Text>
         <TextInput
           style={[style.input, inputStyle]}
           value={value}
           clearButtonMode="while-editing"
+          placeholder={placeholder}
           onChangeText={this.searchList}
+          onFocus={() => this.setState({ listEnable: true })}
+          
         />
+        </View>
         <FlatList
-          style={[style.flatList, flatListStyle]}
+          style={{levation: 3, width: '50%', left: '25%'}}
           data={data}
           extraData={this.state}
           keyExtractor={this.keyExtractor}
@@ -107,6 +117,8 @@ class InputAutoSuggest extends Component {
   }
 }
 InputAutoSuggest.propTypes = {
+  antText: PropTypes.string,
+  placeholder: PropTypes.string,
   inputStyle: PropTypes.shape({}),
   flatListStyle: PropTypes.shape({}),
   itemTextStyle: PropTypes.shape({}),
@@ -122,10 +134,12 @@ InputAutoSuggest.propTypes = {
   }),
 };
 InputAutoSuggest.defaultProps = {
+  antText: "antText",
+  placeholder: 'placeholder',
   inputStyle: {},
   flatListStyle: {},
-  itemTextStyle: { fontSize: 25 },
-  itemTagStyle: { fontSize: 22 },
+  itemTextStyle: { fontSize: normalizeFontSize(25) },
+  itemTagStyle: { fontSize: normalizeFontSize(22) },
   staticData: null,
   apiEndpointSuggestData: () => _.noop,
   onDataSelectedChange: () => _.noop,
@@ -143,11 +157,21 @@ style = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   input: {
-    fontSize: 22,
+    borderColor: '#959595',
     borderBottomWidth: 1,
+    width: '66%',
+    left: '90%',
+    alignSelf: 'center',
+    fontSize: normalizeFontSize(16),
+  },
+  text: {
+    fontSize: normalizeFontSize(16),
+    left: '50%',
+    color: '#000',
+    alignSelf: 'center'
   },
   flatList: {},
-  itemTextStyle: { fontSize: 30 },
+  itemTextStyle: { fontSize: normalizeFontSize(16) },
 });
 
 export default InputAutoSuggest;
