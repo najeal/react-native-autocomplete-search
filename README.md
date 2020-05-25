@@ -1,7 +1,6 @@
 ## Origins
 
-This project is a fork of Nathan's original project: https://github.com/najeal/react-native-autocomplete-search
-
+This project is a fork of Nathan's original work: https://github.com/najeal/react-native-autocomplete-search
 
 ### Intro / Preview
 

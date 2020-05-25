@@ -1,8 +1,8 @@
 {
   "name": "@b9/react-native-autocomplete-search",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "description": "react-native component used for autocompletion when searching data from local or remote source",
-  "main": "src/index.js",
+  "main": "lib/module/index.js",
   "repository": "https://github.com/B9Ingenieria/react-native-autocomplete-search.git",
   "author": "B9 Ingenieria",
   "license": "MIT",
@@ -21,7 +21,8 @@
     "suggest"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepare": "bob build"
   },
   "peerDependencies": {
     "prop-types": "*",
@@ -57,6 +58,27 @@
     ],
     "transform": {
       "^.+\\.js?$": "babel-jest"
-    }
-  }
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
+  },
+  "react-native": "src/index.js",
+  "module": "lib/module/index.js",
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__"
+  ],
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "module"
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }

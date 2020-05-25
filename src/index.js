@@ -1,7 +1,2 @@
-import SuggestionListItem from './SuggestionListItem';
-import InputAutoSuggest from './InputAutoSuggest';
-
-module.exports = {
-    InputAutoSuggest: InputAutoSuggest,
-    SuggestionListItem: SuggestionListItem,
-};
+export { default as InputAutoSuggest } from './InputAutoSuggest'
+export { default as SuggestionListItem } from './SuggestionListItem'
