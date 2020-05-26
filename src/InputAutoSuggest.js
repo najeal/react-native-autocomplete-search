@@ -1,14 +1,11 @@
-
 import {
   FlatList, View, TextInput, StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as _ from 'lodash';
-// import { TextInput } from 'react-native-ui-lib';
 import SuggestionListItem from './SuggestionListItem';
 import suggest from './services/suggest';
-
 
 let style;
 
@@ -28,6 +25,7 @@ class InputAutoSuggest extends Component {
     const existingItem = { id, name };
     this.setState({
       value: name,
+      data: [],
     });
     onDataSelectedChange(existingItem);
   };
