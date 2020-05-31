@@ -48,7 +48,7 @@
     "regenerator-runtime": "^0.13.1"
   },
   "dependencies": {
-    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-flow": "^7.9.0",
     "lodash": "^4.17.12",
     "snyk": "^1.332.1"
   },
