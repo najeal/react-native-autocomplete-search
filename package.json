@@ -23,7 +23,8 @@
   "scripts": {
     "test": "jest",
     "prepare": "yarn run snyk-protect && bob build",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "release": "standard-version"
   },
   "peerDependencies": {
     "prop-types": "*",
