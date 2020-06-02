@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/B9Ingenieria/react-native-autocomplete-search/compare/v1.1.5...v1.2.0) (2020-06-02)
+
+
+### Features
+
+* adding autofocus ([9466a93](https://github.com/B9Ingenieria/react-native-autocomplete-search/commit/9466a93af4475a09e635a9bf3b1598db51618a8b))
+
 ### [1.1.5](https://github.com/B9Ingenieria/react-native-autocomplete-search/compare/v1.1.4...v1.1.5) (2020-05-31)
 
 
