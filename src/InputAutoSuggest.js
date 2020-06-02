@@ -86,7 +86,7 @@ class InputAutoSuggest extends Component {
 
   render() {
     const { value, data } = this.state;
-    const { inputStyle, flatListStyle, placeholder, placeholderTextColor, testID } = this.props;
+    const { inputStyle, flatListStyle, placeholder, placeholderTextColor, testID,autoFocus } = this.props;
     return (
       <View style={style.container}>
         <TextInput
@@ -98,6 +98,7 @@ class InputAutoSuggest extends Component {
           placeholderTextColor={placeholderTextColor}
           testID={testID}
           autoCorrect={false}
+          autoFocus={autoFocus}
         />
         <FlatList
           style={[style.flatList, flatListStyle]}
@@ -127,6 +128,7 @@ InputAutoSuggest.propTypes = {
   testID: PropTypes.string,
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,
+  autoFocus:PropTypes.bool
 };
 InputAutoSuggest.defaultProps = {
   inputStyle: {},
@@ -145,6 +147,7 @@ InputAutoSuggest.defaultProps = {
     name: 'name',
     tags: [],
   },
+  autoFocus:false
 };
 
 style = StyleSheet.create({
