@@ -52,7 +52,7 @@
   "dependencies": {
     "@babel/preset-flow": "^7.10.1",
     "lodash": "^4.17.12",
-    "snyk": "^1.333.0"
+    "snyk": "^1.377.1"
   },
   "jest": {
     "verbose": true,
