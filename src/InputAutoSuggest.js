@@ -44,11 +44,12 @@ class InputAutoSuggest extends Component {
       apiEndpointSuggestData,
       onDataSelectedChange,
       staticData,
+      maxNumberSuggestions
     } = this.props;
     let suggestData = null;
     if (staticData != null) {
       try {
-        suggestData = suggest.searchForRelevant(text, staticData, itemFormat);
+        suggestData = suggest.searchForRelevant(text, staticData, itemFormat,maxNumberSuggestions);
       } catch (e) {
         suggestData = { suggest: [], existingItem: null };
       }
@@ -58,7 +59,7 @@ class InputAutoSuggest extends Component {
           text,
           apiEndpointSuggestData,
           keyPathRequestResult,
-          itemFormat,
+          itemFormat
         );
       } catch (e) {
         suggestData = { suggest: [], existingItem: null };
@@ -86,9 +87,9 @@ class InputAutoSuggest extends Component {
 
   render() {
     const { value, data } = this.state;
-    const { inputStyle, flatListStyle, placeholder, placeholderTextColor, testID,autoFocus } = this.props;
+    const { containerStyle, inputStyle, flatListStyle, placeholder, placeholderTextColor, testID,autoFocus } = this.props;
     return (
-      <View style={style.container}>
+      <View style={[style.container, containerStyle]}>
         <TextInput
           style={[style.input, inputStyle]}
           value={value}
@@ -112,6 +113,8 @@ class InputAutoSuggest extends Component {
   }
 }
 InputAutoSuggest.propTypes = {
+  maxNumberSuggestions:PropTypes.number,
+  containerStyle: PropTypes.shape({}),
   inputStyle: PropTypes.shape({}),
   flatListStyle: PropTypes.shape({}),
   itemTextStyle: PropTypes.shape({}),
@@ -131,6 +134,8 @@ InputAutoSuggest.propTypes = {
   autoFocus:PropTypes.bool
 };
 InputAutoSuggest.defaultProps = {
+  maxNumberSuggestions:5,
+  containerStyle:{},
   inputStyle: {},
   flatListStyle: {},
   itemTextStyle: { fontSize: 25 },
