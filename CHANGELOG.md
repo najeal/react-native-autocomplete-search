@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/B9Ingenieria/react-native-autocomplete-search/compare/v1.2.3...v1.3.0) (2020-10-02)
+
+
+### Features
+
+* agrega propiedad maxNumberSuggestions y containerStyle ([5f277fd](https://github.com/B9Ingenieria/react-native-autocomplete-search/commit/5f277fdef45cc1daabd222e6d330c30440255480))
+
+
+### Bug Fixes
+
+* upgrade @babel/preset-flow from 7.10.1 to 7.10.4 ([93ed283](https://github.com/B9Ingenieria/react-native-autocomplete-search/commit/93ed28399afec4f22a028b4c3aaae4535cf4efde))
+* upgrade snyk from 1.346.0 to 1.377.1 ([22b10e9](https://github.com/B9Ingenieria/react-native-autocomplete-search/commit/22b10e92d2683266c32d158cc7e58e26dea3fa2b))
+
 ### [1.2.3](https://github.com/B9Ingenieria/react-native-autocomplete-search/compare/v1.2.2...v1.2.3) (2020-08-02)
 
 ### [1.2.2](https://github.com/B9Ingenieria/react-native-autocomplete-search/compare/v1.2.1...v1.2.2) (2020-07-14)
