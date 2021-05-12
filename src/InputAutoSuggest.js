@@ -12,7 +12,7 @@ let style;
 class InputAutoSuggest extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], value: '' };
+    this.state = { data: [], value: props.value };
 
     this.searchList = this.searchList.bind(this);
     this.renderItem = this.renderItem.bind(this);
@@ -131,7 +131,8 @@ InputAutoSuggest.propTypes = {
   testID: PropTypes.string,
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,
-  autoFocus:PropTypes.bool
+  autoFocus:PropTypes.bool,
+  value:PropTypes.string
 };
 InputAutoSuggest.defaultProps = {
   maxNumberSuggestions:5,
@@ -152,7 +153,8 @@ InputAutoSuggest.defaultProps = {
     name: 'name',
     tags: [],
   },
-  autoFocus:false
+  autoFocus:false,
+  value:''
 };
 
 style = StyleSheet.create({
