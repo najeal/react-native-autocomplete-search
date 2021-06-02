@@ -15,7 +15,7 @@ Component to search suggestion during you write a word. Based on a static data l
 
 or
 
-**Install package via npm:**
+**Install package via yarn:**
 ```
 yarn add react-native-autocomplete-search
 ```
